@@ -212,13 +212,13 @@ extension WhatsNewViewController {
                 // Initialize SafariViewController
                 let safariViewController = SFSafariViewController(url: url)
                 // Set tint color
-                if #available(iOSApplicationExtension 10.0, *) {
+                if #available(iOS 10.0, *) {
                     safariViewController.preferredControlTintColor = self.configuration.tintColor
                 } else {
                     safariViewController.view.tintColor = self.configuration.tintColor
                 }
                 // Set Bar tint Color
-                if #available(iOSApplicationExtension 10.0, *) {
+                if #available(iOS 10.0, *) {
                     safariViewController.preferredBarTintColor = self.configuration.backgroundColor
                 } else {
                     safariViewController.view.tintColor = self.configuration.tintColor

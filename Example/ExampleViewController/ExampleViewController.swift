@@ -75,15 +75,20 @@ class ExampleViewController: UIViewController {
     }()
     
     /// The Configurations
-    lazy var configurations: [Configuration] = [
-        BackgroundColorConfiguration(),
-        TintColorConfiguration(),
-        AnimationConfiguration(),
-        VersionStoreConfiguration(),
-        LayoutConfiguration(),
-        HapticFeedbackConfiguration(),
-        SecondaryTitleColorConfiguration()
-    ]
+    lazy var configurations: [Configuration] = {
+        var configurations: [Configuration] = [
+            BackgroundColorConfiguration(),
+            TintColorConfiguration(),
+            AnimationConfiguration(),
+            VersionStoreConfiguration(),
+            LayoutConfiguration(),
+            SecondaryTitleColorConfiguration()
+        ]
+        if #available(iOS 10.0, *) {
+            configurations.append(HapticFeedbackConfiguration())
+        }
+        return configurations
+    }()
     
     /// The Cells
     lazy var cells: [UITableViewCell] = self.configurations.map {

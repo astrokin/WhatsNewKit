@@ -10,6 +10,7 @@ import Foundation
 import WhatsNewKit
 
 /// The HapticFeedbackConfiguration
+@available(iOS 10.0, *)
 class HapticFeedbackConfiguration: Configuration {
     
     /// The Title
