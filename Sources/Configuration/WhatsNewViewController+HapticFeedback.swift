@@ -15,10 +15,12 @@ public extension WhatsNewViewController {
     /// The HapticFeedback Enumeration
     enum HapticFeedback: Equatable {
         /// ImpactFeedback with FeedbackStyle
+        @available(iOSApplicationExtension 10.0, *)
         case impact(UIImpactFeedbackGenerator.FeedbackStyle)
         /// SelectionFeedback
         case selection
         /// NotificationFeedback with FeedbackType
+        @available(iOSApplicationExtension 10.0, *)
         case notification(UINotificationFeedbackGenerator.FeedbackType)
         
         /// Execute HapticFeedback
@@ -27,16 +29,28 @@ public extension WhatsNewViewController {
             switch self {
             case .impact(let style):
                 // UIFeedbackGenerator
-                let feedbackGenerator = UIImpactFeedbackGenerator(style: style)
-                feedbackGenerator.impactOccurred()
+                if #available(iOSApplicationExtension 10.0, *) {
+                    let feedbackGenerator = UIImpactFeedbackGenerator(style: style)
+                    feedbackGenerator.impactOccurred()
+                } else {
+                    // Fallback on earlier versions
+                }
             case .selection:
                 // UISelectionFeedbackGenerator
-                let selectionFeedbackGenerator = UISelectionFeedbackGenerator()
-                selectionFeedbackGenerator.selectionChanged()
+                if #available(iOSApplicationExtension 10.0, *) {
+                    let selectionFeedbackGenerator = UISelectionFeedbackGenerator()
+                    selectionFeedbackGenerator.selectionChanged()
+                } else {
+                    // Fallback on earlier versions
+                }
             case .notification(let type):
                 // UINotificationFeedbackGenerator
-                let notificationFeedbackGenerator = UINotificationFeedbackGenerator()
-                notificationFeedbackGenerator.notificationOccurred(type)
+                if #available(iOSApplicationExtension 10.0, *) {
+                    let notificationFeedbackGenerator = UINotificationFeedbackGenerator()
+                    notificationFeedbackGenerator.notificationOccurred(type)
+                } else {
+                    // Fallback on earlier versions
+                }
             }
         }
         

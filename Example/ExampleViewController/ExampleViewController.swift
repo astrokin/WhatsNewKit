@@ -194,7 +194,11 @@ class ExampleViewController: UIViewController {
         // Initialize SafariViewController with URL
         let safariViewController = SFSafariViewController(url: url)
         // Set tint color
-        safariViewController.preferredControlTintColor = .main
+        if #available(iOS 10.0, *) {
+            safariViewController.preferredControlTintColor = .main
+        } else {
+            // Fallback on earlier versions
+        }
         // Present SafariViewController
         self.present(safariViewController, animated: true)
     }

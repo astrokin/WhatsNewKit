@@ -18,10 +18,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     /// The UINavigationController with ViewController as root viewcontroller
     lazy var navigationController: UINavigationController = {
         let navigationController = UINavigationController(rootViewController: ExampleViewController())
-        navigationController.navigationBar.prefersLargeTitles = true
-        navigationController.navigationBar.largeTitleTextAttributes = [
-            .foregroundColor: UIColor.main
-        ]
+        
+        if #available(iOS 11.0, *) {
+            navigationController.navigationBar.prefersLargeTitles = true
+            navigationController.navigationBar.largeTitleTextAttributes = [
+                .foregroundColor: UIColor.main
+            ]
+        }
+        
         navigationController.view.backgroundColor = .white
         navigationController.navigationBar.tintColor = .main
         navigationController.navigationBar.titleTextAttributes = [
